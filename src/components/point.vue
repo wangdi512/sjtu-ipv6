@@ -1,8 +1,8 @@
 <style lang="stylus" scoped>
 .point {
-  height: 800px;
-  background: url('../assets/bg.jpg') no-repeat;
-  background-size: 100% 100%;
+  height: 100% !important;
+  width: 100% !important;
+  background: none !important;
   color: white;
 
   .main {
@@ -14,7 +14,7 @@
 </style>
 
 <template>
-  <div class="point">
+  <div class="point" ref="point">
     <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
     <div class="main"></div>
   </div>
@@ -25,17 +25,22 @@ import echarts from "echarts";
 import header from "@/components/header";
 
 export default {
+  props: {
+    title:String,
+    chartData: Array
+  },
   data() {
     return {
       legendArr: [],
       color: this.$store.state.color,
       myChart: {},
-      name: "柱状图"
+      name: this.title
     };
   },
   methods: {
     _init() {
-      this.legendArr = this.myChart.getOption().series;
+      this.legendArr = this.myChart.getOption().series[0].data;
+
       this.legendArr.forEach(data => {
         data.selected = true;
       });
@@ -53,76 +58,29 @@ export default {
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector(".point .main"));
+    this.myChart = echarts.init(this.$refs.point.querySelector(".point .main"));
     this.myChart.setOption({
-      title: {
-        text: "Customized Pie",
-        left: "center",
-        top: 20,
-        textStyle: {
-          color: "#ccc"
-        }
-      },
-
       tooltip: {
         trigger: "item",
         formatter: "{a} <br/>{b} : {c} ({d}%)"
       },
-
-      visualMap: {
-        show: false,
-        min: 80,
-        max: 600,
-        inRange: {
-          colorLightness: [0, 1]
-        }
+      textStyle: {
+        fontWeight: "normal",
+        fontSize: 18
       },
-      color:this.color,
+      color: this.color,
       series: [
         {
-          name: "访问来源",
           type: "pie",
           radius: "55%",
-          center: ["50%", "50%"],
-          data: [
-            { value: 335, name: "直接访问" },
-            { value: 310, name: "邮件营销" },
-            { value: 274, name: "联盟广告" },
-            { value: 235, name: "视频广告" },
-            { value: 400, name: "搜索引擎" }
-          ].sort(function(a, b) {
-            return a.value - b.value;
-          }),
-          roseType: "radius",
-          label: {
-            normal: {
-              textStyle: {
-                color: "rgba(255, 255, 255, 0.3)"
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              lineStyle: {
-                color: "rgba(255, 255, 255, 0.3)"
-              },
-              smooth: 0.2,
-              length: 10,
-              length2: 20
-            }
-          },
+          center: ["50%", "60%"],
+          data: this.chartData,
           itemStyle: {
-            normal: {
-              color: "#c23531",
-              shadowBlur: 200,
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
               shadowColor: "rgba(0, 0, 0, 0.5)"
             }
-          },
-
-          animationType: "scale",
-          animationEasing: "elasticOut",
-          animationDelay: function(idx) {
-            return Math.random() * 200;
           }
         }
       ]

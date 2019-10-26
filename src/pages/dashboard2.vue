@@ -1,49 +1,31 @@
 <template>
   <div class="dashboard">
-    <el-menu
-      default-active="3"
-      class="el-menu-demo"
-      mode="horizontal"
-      background-color="#050e1e"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-    >
-      <el-menu-item index="1">处理中心</el-menu-item>
-      <el-menu-item index="2">处理中心</el-menu-item>
-      <el-menu-item index="3">消息中心</el-menu-item>
-    </el-menu>
+    <v-nav></v-nav>
     <div class="flex-container column">
       <div
         class="item one"
         @click="clickChart('1')"
-        style="transform: translate(-22.4%,-38%) scale(0.22)"
+        style="transform: translate(-22.4%,-33.5%) scale(0.33)"
       >
         <multipleColumn></multipleColumn>
       </div>
       <div
         class="item two"
         @click="clickChart('2')"
-        style="transform: translate(-22.4%,-13%) scale(0.22)"
+        style="transform: translate(-22.4%,0.5%) scale(0.33)"
       >
         <column></column>
       </div>
       <div
         class="item three"
         @click="clickChart('3')"
-        style="transform: translate(-22.4%,12%) scale(0.22)"
-      >
-        <v-line></v-line>
-      </div>
-       <div
-        class="item three"
-        @click="clickChart('4')"
-        style="transform: translate(-22.4%,37%) scale(0.22)"
+        style="transform: translate(-22.4%,34.5%) scale(0.33)"
       >
         <v-line></v-line>
       </div>
       <div
         class="item four active"
-        @click="clickChart('5')"
+        @click="clickChart('4')"
         style="transform: translate(43.7%, 0) scale(1)"
       >
         <point></point>
@@ -57,6 +39,7 @@ import column from "@/components/column";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
+import nav from "@/components/nav"
 export default {
   data() {
     return {
@@ -100,7 +83,8 @@ export default {
     column,
     multipleColumn,
     point,
-    "v-line": line
+    "v-line": line,
+    "v-nav":nav
   }
 };
 </script>
@@ -110,9 +94,7 @@ export default {
   box-sizing: border-box;
 }
 
-.el-menu--horizontal>.el-menu-item {
-  float: right;
-}
+
 
 .point, .multipleColumn, .columnChart, .line {
   height: 100% !important;
@@ -153,9 +135,7 @@ export default {
   box-sizing: content-box;
 }
 
-.el-menu.el-menu--horizontal {
-  border-bottom: solid 1px #666e98;
-}
+
 
 .active {
   height: 100%;

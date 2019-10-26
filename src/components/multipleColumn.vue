@@ -1,8 +1,8 @@
 <style lang="stylus" scoped>
 .multipleColumn
-  height 1000px
-  background url('../assets/bg.jpg') no-repeat
-  background-size 100% 100%
+    height: 100% !important
+    width: 100% !important
+    background: none !important
   .main
     width 100%
     height calc(100% - 100px)
@@ -11,7 +11,7 @@
 
 
 <template>
-<div class="multipleColumn">
+<div class="multipleColumn" ref="multipleColumn">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
   <div class="main"></div>
 </div>
@@ -48,7 +48,7 @@ export default {
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.multipleColumn .main'))
+    this.myChart = echarts.init(this.$refs.multipleColumn.querySelector('.multipleColumn .main'))
     this.myChart.setOption({
       title: {
         show: false

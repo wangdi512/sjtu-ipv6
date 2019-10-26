@@ -5,17 +5,11 @@
     <main>
       <div class="content">
         <header>基于ipv6的网络流量分析系统</header>
-        <p>写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介</p>
+        <p>写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介</p>
         <el-upload
           class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          multiple
-          :limit="3"
-          :on-exceed="handleExceed"
-          :file-list="fileList"
+          action="/test"
+          :on-success="showResult"
         >
           <el-button size="small" type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">只能上传pcap文件</div>
@@ -29,12 +23,23 @@
 import bg from "@/components/bg.vue";
 import particles from "@/components/particles.vue";
 import foot from "@/components/foot.vue";
+import { mapMutations } from 'vuex'
 export default {
   components: {
     bg,
     particles,
     foot
-  }
+  },
+  methods: {
+     ...mapMutations([
+      'initData' 
+    ]),
+    showResult(res){
+      console.log(res.data);
+      this.initData(res.data)
+      this.$router.push("/dashboard")
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -56,8 +61,11 @@ main {
     }
     p {
       margin-bottom: 1em;
+      font-size: 20px;
+      line-height: 1.3;
     }
     .el-button {
+      font-size: 20px;
       padding: 12px 20px !important;
       border-radius: 10px;
       margin-bottom: 0.5em;

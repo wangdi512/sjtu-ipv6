@@ -1,45 +1,69 @@
 <template>
   <div class="dashboard">
-    <el-menu
-      default-active="3"
-      class="el-menu-demo"
-      mode="horizontal"
-      background-color="#050e1e"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-    >
-      <el-menu-item index="1">处理中心</el-menu-item>
-      <el-menu-item index="2">处理中心</el-menu-item>
-      <el-menu-item index="3">消息中心</el-menu-item>
-    </el-menu>
+    <v-nav></v-nav>
     <div class="flex-container column">
       <div
         class="item one"
         @click="clickChart('1')"
-        style="transform: translate(-22.4%,-33.5%) scale(0.33)"
+        style="transform: translate(-22.4%,-38%) scale(0.22)"
       >
-        <multipleColumn></multipleColumn>
+        <column
+          title="图5"
+          xName="服务"
+          yName="流量"
+          :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
+          :label="[ '上行流量','下行流量' ]"
+          :yData="this.chart5Ydata"
+        ></column>
       </div>
       <div
         class="item two"
         @click="clickChart('2')"
-        style="transform: translate(-22.4%,0.5%) scale(0.33)"
+        style="transform: translate(-22.4%,-13%) scale(0.22)"
       >
-        <column></column>
+        <column
+          title="图4"
+          xName="服务"
+          yName="byte数"
+          :xData="['ipv4_http','ipv4_ftp','ipv4_smtp','ipv4_dns','ipv6_http','ipv6_ftp','ipv6_smtp','ipv6_dns']"
+          :label="[ '服务Byte数' ]"
+          :yData="this.chart4Ydata"
+        ></column>
       </div>
       <div
         class="item three"
         @click="clickChart('3')"
-        style="transform: translate(-22.4%,34.5%) scale(0.33)"
+        style="transform: translate(-22.4%,12%) scale(0.22)"
       >
-        <v-line></v-line>
+        <v-line
+          title="图1"
+          :xData="this.chart1Xdata"
+          :yData="this.chart1Ydata"
+          yName="数量"
+          xName="时间"
+          :label="['ipv4','ipv6']"
+        ></v-line>
+      </div>
+      <div
+        class="item three"
+        @click="clickChart('4')"
+        style="transform: translate(-22.4%,37%) scale(0.22)"
+      >
+        <v-line
+          title="图2"
+          :xData="this.chart2Xdata"
+          :yData="this.chart2Ydata"
+          yName="数量"
+          xName="时间"
+          :label="['ipv4上行','ipv4下行','ipv6上行','ipv6下行']"
+        ></v-line>
       </div>
       <div
         class="item four active"
-        @click="clickChart('4')"
+        @click="clickChart('5')"
         style="transform: translate(43.7%, 0) scale(1)"
       >
-        <point></point>
+        <point :chartData="this.chart3Data" title="图3"></point>
       </div>
     </div>
   </div>
@@ -50,11 +74,24 @@ import column from "@/components/column";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
+import nav from "@/components/nav";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       items: []
     };
+  },
+  computed: {
+    ...mapGetters([
+      "chart1Ydata",
+      "chart1Xdata",
+      "chart2Ydata",
+      "chart2Xdata",
+      "chart3Data",
+      "chart4Ydata",
+      "chart5Ydata"
+    ])
   },
   mounted() {
     this._init();
@@ -93,7 +130,8 @@ export default {
     column,
     multipleColumn,
     point,
-    "v-line": line
+    "v-line": line,
+    "v-nav": nav
   }
 };
 </script>
@@ -101,16 +139,6 @@ export default {
 <style lang="stylus" scoped>
 * {
   box-sizing: border-box;
-}
-
-.el-menu--horizontal>.el-menu-item {
-  float: right;
-}
-
-.point, .multipleColumn, .columnChart, .line {
-  height: 100% !important;
-  width: 100% !important;
-  background: none !important;
 }
 
 .item {
@@ -144,10 +172,6 @@ export default {
   overflow: hidden;
   margin: 0 auto 0 auto;
   box-sizing: content-box;
-}
-
-.el-menu.el-menu--horizontal {
-  border-bottom: solid 1px #666e98;
 }
 
 .active {

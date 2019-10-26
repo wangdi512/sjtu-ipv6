@@ -1,9 +1,7 @@
 <template>
   <div class="footer-link">
     <p>Copyright © 2019 上海交通大学</p>
-    <p>
-        联系我们: &nbsp;laijingzhi@sjtu.edu.cn
-    </p>
+    <p>联系我们: &nbsp;laijingzhi@sjtu.edu.cn</p>
   </div>
 </template>
 
@@ -16,7 +14,6 @@ export default {
 <style lang="scss">
 .footer-link {
   position: relative;
-  font-size: 18px;
   bottom: 0;
   left: 0;
   color: white;
@@ -24,6 +21,8 @@ export default {
   width: 100%;
   z-index: 1001;
   p {
+    font-size: 18px;
+    line-height: 1.5;
     a {
       color: #e6e6fa;
       cursor: pointer;

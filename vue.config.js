@@ -1,16 +1,11 @@
-const list = require("./mock/list.json");
-const upload = require("./mock/upload.json");
-
+const test=require("./mock/test.json")
 module.exports = {
   devServer: {
     port: 8080,
     before(app) {
-      app.get("/get_all_result", (req, res) => {
-        res.json(list);
-      });
-      app.post("/upload_pcap", (req, res) => {
-        res.json(upload);
-      });
+      app.post("/test",(req,res)=>{
+        res.json(test)
+      })
     }
   },
   css: {
