@@ -54,6 +54,7 @@ export default {
   mounted() {
     // 基于准备好的dom，初始化echarts实例
     this.myChart = echarts.init(this.$refs.column.querySelector(".map .main"));
+    console.log(this.$store.state.chartData,"!!!!!!");
     this.myChart.setOption({
       //   backgroundColor: "#404a59",
       title: {
@@ -93,10 +94,10 @@ export default {
         {
           type: "effectScatter",
           coordinateSystem: "geo",
-          data: this.$store.state.chartData.location.slice(0,100).map(function(itemOpt) {
+          data: this.$store.state.chartData.iot_message.slice(0,100).map(function(itemOpt) {
             return {
-              name:itemOpt.city,
-              value: [itemOpt.longitude, itemOpt.latitude],
+              name:itemOpt.ip,
+              value: itemOpt.location,
               label: {
                 normal: {
                   show: false,
@@ -108,7 +109,7 @@ export default {
                   }
                 }
               },
-              symbolSize: 5,
+              symbolSize: 10,
               showEffectOn: "render",
               rippleEffect: {
                 brushType: "stroke"

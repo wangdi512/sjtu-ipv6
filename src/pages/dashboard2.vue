@@ -7,28 +7,36 @@
         @click="clickChart('1')"
         style="transform: translate(-22.4%,-33.5%) scale(0.33)"
       >
-        <multipleColumn></multipleColumn>
+        <v-map></v-map>
       </div>
       <div
         class="item two"
         @click="clickChart('2')"
         style="transform: translate(-22.4%,0.5%) scale(0.33)"
       >
-        <column></column>
+        <v-table></v-table>
       </div>
       <div
         class="item three"
         @click="clickChart('3')"
         style="transform: translate(-22.4%,34.5%) scale(0.33)"
       >
-        <v-line></v-line>
+       
       </div>
       <div
         class="item four active"
         @click="clickChart('4')"
         style="transform: translate(43.7%, 0) scale(1)"
       >
-        <point></point>
+       <v-line
+          title="图2"
+          :xData="this.dateXdata"
+          :yData="this.dateYdata"
+          yName="数量"
+          xName="时间"
+          :label="['malcount','logcount']"
+        ></v-line>
+        <!-- <point></!--> -->
       </div>
     </div>
   </div>
@@ -39,12 +47,18 @@ import column from "@/components/column";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
-import nav from "@/components/nav"
+import vmap from "@/components/map";
+import nav from "@/components/nav";
+import { mapGetters } from "vuex";
+import table from "@/components/table";
 export default {
   data() {
     return {
       items: []
     };
+  },
+  computed: {
+    ...mapGetters(["dateYdata", "dateXdata"])
   },
   mounted() {
     this._init();
@@ -84,7 +98,9 @@ export default {
     multipleColumn,
     point,
     "v-line": line,
-    "v-nav":nav
+    "v-nav": nav,
+    "v-map": vmap,
+    "v-table":table
   }
 };
 </script>
@@ -93,8 +109,6 @@ export default {
 * {
   box-sizing: border-box;
 }
-
-
 
 .point, .multipleColumn, .columnChart, .line {
   height: 100% !important;
@@ -134,8 +148,6 @@ export default {
   margin: 0 auto 0 auto;
   box-sizing: content-box;
 }
-
-
 
 .active {
   height: 100%;

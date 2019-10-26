@@ -7,11 +7,12 @@
         <header>基于ipv6的网络流量分析系统</header>
         <p>写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介</p>
         <el-upload
-          class="upload-demo"
           action="/test"
           :on-success="showResult"
+          multiple
+          :limit="1"
         >
-          <el-button size="small" type="primary">点击上传</el-button>
+          <el-button  type="primary">点击上传</el-button>
           <div slot="tip" class="el-upload__tip">只能上传pcap文件</div>
         </el-upload>
       </div>
@@ -49,6 +50,7 @@ main {
   align-items: center;
   color: #ffffff;
   .content {
+    height:50%;
     z-index: 2;
     width: 50%;
     padding-right: 20px;
