@@ -19,7 +19,8 @@ export default {
       default: []
     },
     myChart: Object,
-    name: String
+    name: String,
+    headerColor:Array,
   },
   created() {
     this._init()
@@ -27,7 +28,7 @@ export default {
   data() {
     return {
       styleArr: [],
-      color: this.$store.state.color
+      color: this.headerColor||this.$store.state.color
     }
   },
   methods: {
@@ -73,7 +74,6 @@ export default {
   color white
   width 100%
   h1
-    flex 0 0 120px
     font-size 21px
     font-weight bold
     padding-left 20px
@@ -88,7 +88,7 @@ export default {
       padding 2px 10px 2px 10px
       line-height 20px
       text-align center
-      font-size 11px
+      font-size 15px
       &:first-child
         border-top-left-radius 5px
         border-bottom-left-radius 5px

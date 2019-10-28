@@ -50,7 +50,7 @@ main {
   align-items: center;
   color: #ffffff;
   .content {
-    height:50%;
+    height:40%;
     z-index: 2;
     width: 50%;
     padding-right: 20px;

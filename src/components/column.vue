@@ -132,7 +132,7 @@ export default {
       ],
       textStyle: {
         fontWeight: "normal",
-        fontSize: 18
+        fontSize: 15
       },
       series: this.label.map((v, i) => {
         return {

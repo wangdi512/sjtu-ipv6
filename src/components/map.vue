@@ -93,7 +93,7 @@ export default {
         {
           type: "effectScatter",
           coordinateSystem: "geo",
-          data: this.$store.state.chartData.location.slice(0,100).map(function(itemOpt) {
+          data: this.$store.state.chartData.location.slice(0,36).map(function(itemOpt) {
             return {
               name:itemOpt.city,
               value: [itemOpt.longitude, itemOpt.latitude],

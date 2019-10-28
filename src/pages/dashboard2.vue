@@ -5,30 +5,24 @@
       <div
         class="item one"
         @click="clickChart('1')"
-        style="transform: translate(-22.4%,-33.5%) scale(0.33)"
+        style="transform: translate(-22.4%,-22.5%) scale(0.33)"
       >
         <v-map></v-map>
       </div>
       <div
         class="item two"
         @click="clickChart('2')"
-        style="transform: translate(-22.4%,0.5%) scale(0.33)"
+        style="transform: translate(-22.4%,16.5%) scale(0.33)"
       >
         <v-table></v-table>
       </div>
-      <div
-        class="item three"
-        @click="clickChart('3')"
-        style="transform: translate(-22.4%,34.5%) scale(0.33)"
-      >
-       
-      </div>
+
       <div
         class="item four active"
-        @click="clickChart('4')"
+        @click="clickChart('3')"
         style="transform: translate(43.7%, 0) scale(1)"
       >
-       <v-line
+        <v-line
           title="图2"
           :xData="this.dateXdata"
           :yData="this.dateYdata"
@@ -36,7 +30,8 @@
           xName="时间"
           :label="['malcount','logcount']"
         ></v-line>
-        <!-- <point></!--> -->
+        <!-- <point></!-->
+        -->
       </div>
     </div>
   </div>
@@ -44,9 +39,10 @@
 
 <script>
 import column from "@/components/column";
-import line from "@/components/line";
+import column2 from "@/components/column2";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
+import line from "@/components/line";
 import vmap from "@/components/map";
 import nav from "@/components/nav";
 import { mapGetters } from "vuex";
@@ -95,12 +91,13 @@ export default {
   },
   components: {
     column,
+    column2,
+    "v-line": line,
     multipleColumn,
     point,
-    "v-line": line,
     "v-nav": nav,
     "v-map": vmap,
-    "v-table":table
+    "v-table": table
   }
 };
 </script>

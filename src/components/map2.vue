@@ -94,7 +94,7 @@ export default {
         {
           type: "effectScatter",
           coordinateSystem: "geo",
-          data: this.$store.state.chartData.iot_message.slice(0,100).map(function(itemOpt) {
+          data: this.$store.state.chartData.iot_message.slice(0,36).map(function(itemOpt) {
             return {
               name:itemOpt.ip,
               value: itemOpt.location,

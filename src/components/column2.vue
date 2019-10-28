@@ -1,9 +1,10 @@
-<!-- 层叠柱状图 -->
+
 <style lang="stylus" scoped>
-.line {
+.columnChart {
   height: 100% !important;
   width: 100% !important;
   background: none !important;
+  color: white;
 }
 
 .main {
@@ -14,7 +15,7 @@
 </style>
 
 <template>
-  <div class="line" ref="line">
+  <div class="columnChart" ref="column">
     <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
     <div class="main"></div>
   </div>
@@ -26,12 +27,13 @@ import header from "@/components/header";
 
 export default {
   props: {
-    title: String,
+    xData: Array,
+    yData: Array,
     xName: String,
     yName: String,
     label: Array,
-    xData: Array,
-    yData: Array
+    title: String,
+    barWidth:Number
   },
   data() {
     return {
@@ -54,15 +56,16 @@ export default {
           this.myChart.resize();
         }.bind(this)
       );
-    },
-    getSeries() {}
+    }
   },
   components: {
     "v-header": header
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(this.$refs.line.querySelector(".line .main"));
+    this.myChart = echarts.init(
+      this.$refs.column.querySelector(".columnChart .main")
+    );
     this.myChart.setOption({
       title: {
         show: false
@@ -81,7 +84,7 @@ export default {
       xAxis: [
         {
           name: this.xName,
-          // type: "category",
+          type: "category",
           axisLine: {
             show: false
           },
@@ -132,16 +135,20 @@ export default {
         fontWeight: "normal",
         fontSize: 15
       },
-      series: this.label
-        ? this.label.map((v, i) => {
-            return {
-              name: v,
-              type: "line",
-              stack: "总量",
-              data: this.yData[i]
-            };
-          })
-        : { name: "", type: "line", stack: "总量", data: [] }
+      series: [
+        {
+          name: this.label[0],
+          type: "bar",
+          stack: "总量",
+          data: [...this.yData[0].slice(0, 4)]
+        },
+        {
+          name: this.label[1],
+          type: "bar",
+          stack: "总量",
+          data: ['-','-','-','-',...this.yData[0].slice(4, 8)]
+        }
+      ]
     });
     this._init();
   }

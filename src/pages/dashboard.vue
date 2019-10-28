@@ -8,9 +8,9 @@
         style="transform: translate(-22.4%,-38%) scale(0.22)"
       >
         <column
-          title="图5"
-          xName="服务"
-          yName="流量"
+          title="IPv6各服务提供商上下行流量大"
+          xName="服务商"
+          yName="流量大小/Byte"
           :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
           :label="[ '上行流量','下行流量' ]"
           :yData="this.chart5Ydata"
@@ -21,14 +21,14 @@
         @click="clickChart('2')"
         style="transform: translate(-22.4%,-13%) scale(0.22)"
       >
-        <column
-          title="图4"
+        <column2
+          title="IPV4/IPV6各服务总流量大小"
           xName="服务"
           yName="byte数"
-          :xData="['ipv4_http','ipv4_ftp','ipv4_smtp','ipv4_dns','ipv6_http','ipv6_ftp','ipv6_smtp','ipv6_dns']"
-          :label="[ '服务Byte数' ]"
+          :xData="['http','ipv4_ftp','ipv4_smtp','ipv4_dns','http','ipv6_ftp','ipv6_smtp','ipv6_dns']"
+          :label="[ 'ipv4' ,'ipv6']"
           :yData="this.chart4Ydata"
-        ></column>
+        ></column2>
       </div>
       <div
         class="item three"
@@ -36,11 +36,11 @@
         style="transform: translate(-22.4%,12%) scale(0.22)"
       >
         <v-line
-          title="图1"
+          title="IPv4/IPv6流量变化折线图"
           :xData="this.chart1Xdata"
           :yData="this.chart1Ydata"
-          yName="数量"
-          xName="时间"
+          yName="流量大小/byte"
+          xName="时间/s"
           :label="['ipv4','ipv6']"
         ></v-line>
       </div>
@@ -50,11 +50,11 @@
         style="transform: translate(-22.4%,37%) scale(0.22)"
       >
         <v-line
-          title="图2"
+          title="IPv4/IPv6上下行流量变化折线图"
           :xData="this.chart2Xdata"
           :yData="this.chart2Ydata"
-          yName="数量"
-          xName="时间"
+          yName="流量大小/byte"
+          xName="时间/s"
           :label="['ipv4上行','ipv4下行','ipv6上行','ipv6下行']"
         ></v-line>
       </div>
@@ -63,7 +63,7 @@
         @click="clickChart('5')"
         style="transform: translate(43.7%, 0) scale(1)"
       >
-        <point :chartData="this.chart3Data" title="图3"></point>
+        <point :chartData="this.chart3Data" title="IPv4/IPv6流量占比图"></point>
       </div>
     </div>
   </div>
@@ -71,6 +71,7 @@
 
 <script>
 import column from "@/components/column";
+import column2 from "@/components/column2";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
@@ -127,6 +128,7 @@ export default {
     }
   },
   components: {
+    column2,
     column,
     multipleColumn,
     point,

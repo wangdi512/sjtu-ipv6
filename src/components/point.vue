@@ -10,13 +10,25 @@
     height: calc(100% - 100px);
     margin-top: -15px;
   }
+  p{
+    position:absolute !important;
+    left:19px
+    top:70px;
+    line-height :1.4;
+    text-align :left;
+    strong{
+      color:#e03e3e;
+    }
+  }
 }
 </style>
 
 <template>
   <div class="point" ref="point">
-    <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
-    <div class="main"></div>
+    <v-header :name="name" :legendArr="legendArr" :myChart="myChart" :headerColor="this.color"></v-header>
+      <p>本次上传文件的流量总大小为 <strong>{{this.chartData[0].value+this.chartData[1].value}}</strong>Byte</br>其中IPv4流量总大小为<strong>{{this.chartData[0].value}}</strong> Bytes</br>IPv6流量总大小为<strong>{{this.chartData[1].value}}</strong>Byte。</p>
+    <div class="main">
+    </div>
   </div>
 </template>
 
@@ -32,7 +44,7 @@ export default {
   data() {
     return {
       legendArr: [],
-      color: this.$store.state.color,
+      color:["#AE5548", "#6D9EA8","#325B69", "#698570",  "#9CC2B0", "#C98769"], 
       myChart: {},
       name: this.title
     };
@@ -62,11 +74,11 @@ export default {
     this.myChart.setOption({
       tooltip: {
         trigger: "item",
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: "{b} : {c} ({d}%)"
       },
       textStyle: {
         fontWeight: "normal",
-        fontSize: 18
+        fontSize:20 
       },
       color: this.color,
       series: [
