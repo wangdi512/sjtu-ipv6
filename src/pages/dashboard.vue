@@ -1,75 +1,54 @@
 <template>
   <div class="dashboard">
     <v-nav></v-nav>
-    <div class="flex-container column">
-      <div
-        class="item one"
-        @click="clickChart('1')"
-        style="transform: translate(-22.4%,-38%) scale(0.22)"
-      >
-        <column
-          title="IPv6各服务提供商上下行流量大"
-          xName="服务商"
-          yName="流量大小/Byte"
-          :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
-          :label="[ '上行流量','下行流量' ]"
-          :yData="this.chart5Ydata"
-        ></column>
-      </div>
-      <div
-        class="item two"
-        @click="clickChart('2')"
-        style="transform: translate(-22.4%,-13%) scale(0.22)"
-      >
-        <column2
-          title="IPV4/IPV6各服务总流量大小"
-          xName="服务"
-          yName="byte数"
-          :xData="['http','ipv4_ftp','ipv4_smtp','ipv4_dns','http','ipv6_ftp','ipv6_smtp','ipv6_dns']"
-          :label="[ 'ipv4' ,'ipv6']"
-          :yData="this.chart4Ydata"
-        ></column2>
-      </div>
-      <div
-        class="item three"
-        @click="clickChart('3')"
-        style="transform: translate(-22.4%,12%) scale(0.22)"
-      >
-        <v-line
-          title="IPv4/IPv6流量变化折线图"
-          :xData="this.chart1Xdata"
-          :yData="this.chart1Ydata"
-          yName="流量大小/byte"
-          xName="时间/s"
-          :label="['ipv4','ipv6']"
-        ></v-line>
-      </div>
-      <div
-        class="item three"
-        @click="clickChart('4')"
-        style="transform: translate(-22.4%,37%) scale(0.22)"
-      >
-        <v-line
-          title="IPv4/IPv6上下行流量变化折线图"
-          :xData="this.chart2Xdata"
-          :yData="this.chart2Ydata"
-          yName="流量大小/byte"
-          xName="时间/s"
-          :label="['ipv4上行','ipv4下行','ipv6上行','ipv6下行']"
-        ></v-line>
-      </div>
-      <div
-        class="item four active"
-        @click="clickChart('5')"
-        style="transform: translate(43.7%, 0) scale(1)"
-      >
-        <point :chartData="this.chart3Data" title="IPv4/IPv6流量占比图"></point>
-      </div>
+    <div class="item one">
+      <column
+        title="IPv6各服务提供商上下行流量大小"
+        xName="服务商"
+        yName="流量大小/Byte"
+        :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
+        :label="[ '上行流量','下行流量' ]"
+        :yData="this.chart5Ydata"
+      ></column>
+    </div>
+    <div class="item two">
+      <column2
+        title="IPV4/IPV6各服务总流量大小"
+        xName="服务"
+        yName="byte数"
+        :xData="['http','ipv4_ftp','ipv4_smtp','ipv4_dns','http','ipv6_ftp','ipv6_smtp','ipv6_dns']"
+        :label="[ 'ipv4' ,'ipv6']"
+        :yData="this.ydata2"
+      ></column2>
+    </div>
+    <div class="item three">
+      <v-line
+        title="IPv4/IPv6流量变化折线图"
+        :xData="this.chart1Xdata"
+        :yData="this.ydata3"
+        yName="流量大小/byte"
+        xName="时间/s"
+        :label="['ipv4','ipv6']"
+      ></v-line>
+    </div>
+    <div class="item four">
+      <v-line
+        title="IPv4/IPv6上下行流量变化折线图"
+        :xData="this.chart2Xdata"
+        :yData="this.ydata4"
+        yName="流量大小/byte"
+        xName="时间/s"
+        :label="['ipv4上行','ipv4下行','ipv6上行','ipv6下行']"
+      ></v-line>
+    </div>
+    <div class="item five">
+      <point :chartData="this.data5" title="IPv4/IPv6流量占比图"></point>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 import column from "@/components/column";
 import column2 from "@/components/column2";
 import line from "@/components/line";
@@ -80,7 +59,9 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      top: [2000, 2000, 2000, 2000, 2000],
+      windowHeight: 768
     };
   },
   computed: {
@@ -92,41 +73,34 @@ export default {
       "chart3Data",
       "chart4Ydata",
       "chart5Ydata"
-    ])
-  },
-  mounted() {
-    this._init();
-  },
-  methods: {
-    _resize() {
-      this.$root.charts.forEach(myChart => {
-        myChart.resize();
-      });
+    ]),
+    ydata2() {
+      return this.top[1] < this.windowHeight - 300 ? this.chart4Ydata : [];
     },
-    _init() {
-      this.items = document.querySelectorAll(".flex-container .item");
-      for (let i = 0; i < this.items.length; i++) {
-        this.items[i].dataset.order = i + 1;
-      }
+    ydata3() {
+      return this.top[2] < this.windowHeight - 300 ? this.chart1Ydata : [];
     },
-    clickChart(clickIndex) {
-      let activeItem = document.querySelector(".flex-container .active");
-      let activeIndex = activeItem.dataset.order;
-      let clickItem = this.items[clickIndex - 1];
-      if (activeIndex === clickIndex) {
-        return;
-      }
-      activeItem.classList.remove("active");
-      clickItem.classList.add("active");
-      this._setStyle(clickItem, activeItem);
+    ydata4() {
+      return this.top[3] < this.windowHeight - 300 ? this.chart2Ydata : [];
     },
-    _setStyle(el1, el2) {
-      let transform1 = el1.style.transform;
-      let transform2 = el2.style.transform;
-      el1.style.transform = transform2;
-      el2.style.transform = transform1;
+    data5() {
+      return this.top[4] < this.windowHeight - 100 ? this.chart3Data : [{name:"ipv4",value:100000},{name:"ipv6",value:0.001}];
     }
   },
+  mounted() {
+    this.windowHeight = window.innerHeight;
+    Vue.nextTick(() => {
+      this.top = [].slice.call(document.querySelectorAll(".item")).map(e => {
+        return e.getBoundingClientRect().top;
+      });
+      window.addEventListener("scroll", () => {
+        this.top = [].slice.call(document.querySelectorAll(".item")).map(e => {
+          return e.getBoundingClientRect().top;
+        });
+      });
+    });
+  },
+  methods: {},
   components: {
     column2,
     column,
@@ -138,21 +112,18 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
 }
 
 .item {
-  padding: 0px;
-  margin: 0px;
-  width: 68%;
+  padding: 10px 0;
+  margin: auto auto !important;
+  width: 80%;
   height: 100%;
-  position: absolute;
-  transform: scale(0.33);
   text-align: center;
   transition: all 0.8s;
-  background: rgba(32, 32, 35, 0.5);
 }
 
 .dashboard {
@@ -161,25 +132,22 @@ export default {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background: url('../assets/bg.jpg');
   background-size: 100% 100%;
 }
 
-.flex-container.column {
-  padding-top: 25px;
-  margin: auto;
-  position: relative;
-  height: 85%;
-  width: 90%;
-  overflow: hidden;
-  margin: 0 auto 0 auto;
-  box-sizing: content-box;
-}
-
-.active {
+.item.one {
   height: 100%;
-  width: 69%;
-  margin-left: 10px;
-  line-height: 300px;
 }
+// .flex-container.column {
+//   flex-basis: 100%;
+//   flex-direction: column;
+//   flex-wrap: no-wrap;
+//   // padding-top: 25px;
+//   margin: auto;
+//   position: relative;
+//   height: calc(100vh - 57px);
+//   width: 90%;
+//   margin: 0 auto 0 auto;
+//   box-sizing: content-box;
+// }
 </style>

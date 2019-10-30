@@ -41,6 +41,93 @@ export default {
       name: this.title
     };
   },
+  watch: {
+    yData: function(val) {
+      if (val[0]) {
+        this.myChart.setOption({
+          title: {
+            show: false
+          },
+          tooltip: {
+            trigger: "axis"
+          },
+          legend: {
+            show: false
+          },
+          toolbox: {
+            show: false
+          },
+          color: this.color,
+          calculable: true,
+          xAxis: [
+            {
+              name: this.xName,
+              // type: "category",
+              // axisLine: {
+              //   show: false
+              // },
+              // axisTick: {
+              //   show: false
+              // },
+              // nameTextStyle: {
+              //   color: "rgba(255, 255, 255, 0.69)"
+              // },
+              axisLabel: {
+                textStyle: {
+                  // color: "white",
+                  fontSize: 16
+                }
+              },
+              data: this.xData
+            }
+          ],
+          yAxis: [
+            {
+              // axisLine: {
+              //   show: false
+              // },
+              nameLocation: "end",
+              nameGap: 20,
+              nameRotate: 0,
+              axisTick: {
+                show: false
+              },
+              splitLine: {
+                // lineStyle: {
+                //   color: ["rgba(230, 230, 230, 0.2)"]
+                // }
+              },
+              axisLabel: {
+                textStyle: {
+                  // color: "white",
+                  fontSize: 16
+                }
+              },
+              name: this.yName,
+              type: "value",
+              nameTextStyle: {
+                color: "rgba(255, 255, 255, 0.69)"
+              }
+            }
+          ],
+          textStyle: {
+            fontWeight: "normal",
+            fontSize: 15
+          },
+          series: this.label
+            ? this.label.map((v, i) => {
+                return {
+                  name: v,
+                  type: "line",
+                  stack: "总量",
+                  data: val[i]
+                };
+              })
+            : { name: "", type: "line", stack: "总量", data: [] }
+        });
+      }
+    }
+  },
   methods: {
     _init() {
       this.legendArr = this.myChart.getOption().series;
@@ -82,18 +169,19 @@ export default {
         {
           name: this.xName,
           // type: "category",
-          axisLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          nameTextStyle: {
-            color: "rgba(255, 255, 255, 0.69)"
-          },
+          // axisLine: {
+          //   show: false
+          // },
+          // axisTick: {
+          //   show: false
+          // },
+          // nameTextStyle: {
+          //   color: "rgba(255, 255, 255, 0.69)"
+          // },
           axisLabel: {
             textStyle: {
-              color: "white"
+              // color: "white",
+              fontSize: 16
             }
           },
           data: this.xData
@@ -101,9 +189,9 @@ export default {
       ],
       yAxis: [
         {
-          axisLine: {
-            show: false
-          },
+          // axisLine: {
+          //   show: false
+          // },
           nameLocation: "end",
           nameGap: 20,
           nameRotate: 0,
@@ -111,14 +199,14 @@ export default {
             show: false
           },
           splitLine: {
-            lineStyle: {
-              color: ["rgba(230, 230, 230, 0.2)"]
-            }
+            // lineStyle: {
+            //   color: ["rgba(230, 230, 230, 0.2)"]
+            // }
           },
           axisLabel: {
             textStyle: {
-              color: "white",
-              fontSize: 14
+              // color: "white",
+              fontSize: 16
             }
           },
           name: this.yName,

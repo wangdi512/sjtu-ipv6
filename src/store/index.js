@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const state = {
   count: 0,
-  color: ["#325B69", "#698570", "#AE5548", "#6D9EA8", "#9CC2B0", "#C98769"],
+  color: ["#AE5548", "#6D9EA8", "#325B69", "#698570", "#9CC2B0", "#C98769"],
   chartData: {}
 };
 
@@ -63,13 +63,23 @@ const getters = {
       (acc, v) => {
         acc[0].push(v.malcount);
         acc[1].push(v.logcount);
-        return acc
+        return acc;
       },
       [[], []]
     );
   },
-  dateXdata:state =>{
-    return state.chartData.date.map(v=>v.date)
+  dateXdata: state => {
+    return state.chartData.date.map(v => v.date);
+  },
+  malTotal: state => {
+    return state.chartData.date.reduce((acc, v) => {
+      return acc + parseInt(v.malcount);
+    }, 0);
+  },
+  logTotal: state => {
+    return state.chartData.date.reduce((acc, v) => {
+      return acc + parseInt(v.logcount);
+    }, 0);
   }
 };
 

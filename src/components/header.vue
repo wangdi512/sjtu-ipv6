@@ -70,10 +70,11 @@ export default {
   display flex
   height 50px
   line-height 50px
-  background-color rgba(32, 32, 35, 0.2)
+  // background-color rgba(32, 32, 35, 0.2)
   color white
   width 100%
   h1
+    color black
     font-size 21px
     font-weight bold
     padding-left 20px

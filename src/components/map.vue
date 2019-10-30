@@ -57,11 +57,12 @@ export default {
     this.myChart.setOption({
       //   backgroundColor: "#404a59",
       title: {
-        text: "图一",
+        text: "恶意域名地区分布",
         left: "center",
         top: "top",
         textStyle: {
-          color: "#e0e6ef"
+          // color: "#e0e6ef",
+          fontSize:22,
         }
       },
       tooltip: {
@@ -81,11 +82,11 @@ export default {
         },
         itemStyle: {
           normal: {
-            areaColor: "#323c48", //区域颜色
-            borderColor: "#111" //区域划分边框颜色
+            // areaColor: "#323c48", //区域颜色
+            // borderColor: "#111" //区域划分边框颜色
           },
           emphasis: {
-            areaColor: "#2a333d" //鼠标Havor颜色
+            // areaColor: "#2a333d" //鼠标Havor颜色
           }
         }
       },
@@ -103,7 +104,7 @@ export default {
                   position: "top",
                   formatter: "{b}",
                   textStyle: {
-                    color: "black",
+                    color: "white",
                     fontWeight: "bold"
                   }
                 }

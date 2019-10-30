@@ -5,7 +5,7 @@
     <main>
       <div class="content">
         <header>基于ipv6的网络流量分析系统</header>
-        <p>写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介写简介</p>
+        <p>一款集安全分析与数据可视化为一体的工具</p>
         <el-upload
           action="/test"
           :on-success="showResult"
@@ -38,7 +38,7 @@ export default {
     showResult(res){
       console.log(res.data);
       this.initData(res.data)
-      this.$router.push("/dashboard")
+      this.$router.push("/dashboard4")
     }
   },
 };
@@ -50,7 +50,7 @@ main {
   align-items: center;
   color: #ffffff;
   .content {
-    height:40%;
+    height:35%;
     z-index: 2;
     width: 50%;
     padding-right: 20px;

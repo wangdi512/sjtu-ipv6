@@ -1,14 +1,10 @@
 <template>
   <div class="dashboard">
     <v-nav></v-nav>
-    <div class="flex-container column">
-      <div
-        class="item four active"
-        style="transform:  scale(1)"
-      >
+    <div class="item  one" style="transform:  scale(1)">
       <v-map></v-map>
-        <!-- <point></!--> -->
-      </div>
+      <!-- <point></!-->
+      -->
     </div>
   </div>
 </template>
@@ -18,7 +14,7 @@ import column from "@/components/column";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
-import vmap from "@/components/map2";
+import vmap from "@/components/map";
 import nav from "@/components/nav";
 import { mapGetters } from "vuex";
 import table from "@/components/table";
@@ -31,11 +27,8 @@ export default {
   computed: {
     ...mapGetters(["dateYdata", "dateXdata"])
   },
-  mounted() {
-  },
-  methods: {
-   
-  },
+  mounted() {},
+  methods: {},
   components: {
     column,
     multipleColumn,
@@ -43,7 +36,7 @@ export default {
     "v-line": line,
     "v-nav": nav,
     "v-map": vmap,
-    "v-table":table
+    "v-table": table
   }
 };
 </script>
@@ -52,23 +45,13 @@ export default {
 * {
   box-sizing: border-box;
 }
-
-.point, .multipleColumn, .columnChart, .line {
-  height: 100% !important;
-  width: 100% !important;
-  background: none !important;
-}
-
 .item {
-  padding: 0px;
-  margin: 0px;
-  width: 68%;
+  padding: 10px 0;
+  margin: auto auto !important;
+  width: 80%;
   height: 100%;
-  position: absolute;
-  transform: scale(0.33);
   text-align: center;
   transition: all 0.8s;
-  background: rgba(32, 32, 35, 0.5);
 }
 
 .dashboard {
@@ -77,27 +60,10 @@ export default {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  background: url('../assets/bg.jpg');
   background-size: 100% 100%;
 }
 
-.flex-container.column {
-  padding-top: 25px;
-  margin: auto;
-  position: relative;
-  height: 85%;
-  width: 90%;
-  overflow: hidden;
-  margin: 0 auto 0 auto;
-  box-sizing: content-box;
-  display :flex;
-  justify-content :center
-}
-
-.active {
+.item.one {
   height: 100%;
-  width: 69%;
-  margin-left: 10px;
-  line-height: 300px;
 }
 </style>

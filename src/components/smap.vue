@@ -1,8 +1,9 @@
+
 <style lang="stylus" scoped>
 .map {
   height: 100% !important;
   width: 100% !important;
-  background: none !important;
+
   color: white;
 }
 
@@ -63,7 +64,7 @@ export default {
         top: "top",
         textStyle: {
           // color: "#e0e6ef",
-          fontSize:22
+          fontSize:16
         }
       },
       tooltip: {
@@ -81,6 +82,7 @@ export default {
             show: false
           }
         },
+        zoom:2,
         itemStyle: {
           normal: {
             // areaColor: "#323c48", //区域颜色
