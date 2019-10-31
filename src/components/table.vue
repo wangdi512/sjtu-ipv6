@@ -13,7 +13,7 @@
 p{
   line-height: 1.4;
   text-align: left;
-  font-size: 17px !important;
+  font-size: 20px !important;
   margin: -15px 0 15px 10px !important;
   strong{
    color:#e03e3e;
@@ -41,7 +41,8 @@ p{
   font-weight: bolder;
 }
 thead{
-  // color:white !important;
+  color:black !important;
+  font-weight: bolder;
 }
 .el-table td,
 .el-table th.is-leaf {
@@ -81,7 +82,6 @@ export default {
     ])
   },
   mounted(){
-      console.log(this.$store);
   }
 };
 </script>

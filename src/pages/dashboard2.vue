@@ -15,7 +15,7 @@
       <v-map></v-map>
     </div>
     <div class="item three">
-      <v-table></v-table>-->
+      <v-table></v-table>
     </div>
   </div>
 </template>

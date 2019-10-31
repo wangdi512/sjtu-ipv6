@@ -6,15 +6,15 @@
       <div class="content">
         <header>基于ipv6的网络流量分析系统</header>
         <p>一款集安全分析与数据可视化为一体的工具</p>
-        <el-upload
+        <!-- <el-upload
           action="/test"
           :on-success="showResult"
           multiple
           :limit="1"
-        >
-          <el-button  type="primary">点击上传</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传pcap文件</div>
-        </el-upload>
+        >-->
+        <el-button type="primary" @click="showResult">进入系统</el-button>
+        <!-- <div slot="tip" class="el-upload__tip">只能上传pcap文件</div> -->
+        <!-- </el-upload> -->
       </div>
     </main>
     <foot></foot>
@@ -24,7 +24,7 @@
 import bg from "@/components/bg.vue";
 import particles from "@/components/particles.vue";
 import foot from "@/components/foot.vue";
-import { mapMutations } from 'vuex'
+import { mapMutations } from "vuex";
 export default {
   components: {
     bg,
@@ -32,15 +32,16 @@ export default {
     foot
   },
   methods: {
-     ...mapMutations([
-      'initData' 
-    ]),
-    showResult(res){
-      console.log(res.data);
-      this.initData(res.data)
-      this.$router.push("/dashboard4")
+    ...mapMutations(["initData"]),
+    showResult(res) {
+      console.log('!!!',this.$axios);
+      this.$axios.get("/test").then(res => {
+        console.log(res.data);
+        this.initData(res.data.data);
+        this.$router.push("/dashboard4");
+      });
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -50,7 +51,7 @@ main {
   align-items: center;
   color: #ffffff;
   .content {
-    height:35%;
+    height: 35%;
     z-index: 2;
     width: 50%;
     padding-right: 20px;
@@ -73,9 +74,9 @@ main {
       margin-bottom: 0.5em;
       background-color: #006699;
     }
-    .el-upload__tip{
-        font-size: 14px;
-        color: #ffffff;
+    .el-upload__tip {
+      font-size: 14px;
+      color: #ffffff;
     }
   }
 }

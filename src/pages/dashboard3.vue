@@ -3,8 +3,7 @@
     <v-nav></v-nav>
     <div class="item  one" style="transform:  scale(1)">
       <v-map></v-map>
-      <!-- <point></!-->
-      -->
+      
     </div>
   </div>
 </template>
@@ -14,7 +13,7 @@ import column from "@/components/column";
 import line from "@/components/line";
 import multipleColumn from "@/components/multipleColumn";
 import point from "@/components/point";
-import vmap from "@/components/map";
+import vmap from "@/components/map2";
 import nav from "@/components/nav";
 import { mapGetters } from "vuex";
 import table from "@/components/table";
