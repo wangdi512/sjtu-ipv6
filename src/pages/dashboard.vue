@@ -2,14 +2,8 @@
   <div class="dashboard">
     <v-nav></v-nav>
     <div class="item one">
-      <column
-        title="IPv6各服务提供商上下行流量大小"
-        xName="服务商"
-        yName="流量大小/Byte"
-        :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
-        :label="[ '上行流量','下行流量' ]"
-        :yData="this.chart5Ydata"
-      ></column>
+      <point :chartData="this.chart3Data" title="IPv4/IPv6流量占比图"></point>
+     
     </div>
     <div class="item two">
       <column2
@@ -42,7 +36,14 @@
       ></v-line>
     </div>
     <div class="item five">
-      <point :chartData="this.data5" title="IPv4/IPv6流量占比图"></point>
+       <column
+        title="IPv6各服务提供商上下行流量大小"
+        xName="服务商"
+        yName="流量大小/Byte"
+        :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
+        :label="[ '上行流量','下行流量' ]"
+        :yData="this.data5"
+      ></column>
     </div>
   </div>
 </template>
@@ -84,7 +85,7 @@ export default {
       return this.top[3] < this.windowHeight - 300 ? this.chart2Ydata : [];
     },
     data5() {
-      return this.top[4] < this.windowHeight - 100 ? this.chart3Data : [{name:"ipv4",value:100000},{name:"ipv6",value:0.001}];
+      return this.top[4] < this.windowHeight - 300 ? this.chart5Ydata : [];
     }
   },
   mounted() {

@@ -110,34 +110,34 @@ export default {
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    // this.myChart = echarts.init(this.$refs.point.querySelector(".point .main"));
-    // this.myChart.setOption({
-    //   tooltip: {
-    //     trigger: "item",
-    //     formatter: "{b} : {c} ({d}%)"
-    //   },
-    //   textStyle: {
-    //     fontWeight: "normal",
-    //     fontSize: 20
-    //   },
-    //   color: this.color,
-    //   series: [
-    //     {
-    //       type: "pie",
-    //       radius: "55%",
-    //       center: ["50%", "60%"],
-    //       data: this.chartData,
-    //       itemStyle: {
-    //         emphasis: {
-    //           shadowBlur: 10,
-    //           shadowOffsetX: 0,
-    //           shadowColor: "rgba(0, 0, 0, 0.5)"
-    //         }
-    //       }
-    //     }
-    //   ]
-    // });
-    // this._init();
+    this.myChart = echarts.init(this.$refs.point.querySelector(".point .main"));
+    this.myChart.setOption({
+      tooltip: {
+        trigger: "item",
+        formatter: "{b} : {c} ({d}%)"
+      },
+      textStyle: {
+        fontWeight: "normal",
+        fontSize: 20
+      },
+      color: this.color,
+      series: [
+        {
+          type: "pie",
+          radius: "55%",
+          center: ["50%", "60%"],
+          data: this.chartData,
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)"
+            }
+          }
+        }
+      ]
+    });
+    this._init();
   }
 };
 </script>
