@@ -30,7 +30,10 @@
       </div>
       <div class="item four">
         <h1>系统运行情况：</h1>
-          <p>恶意域名数总计:&nbsp;<strong>{{this.malTotal}}</strong></br> 检测日志数总计:&nbsp;<strong>{{this.logTotal}}</strong></p>
+        <p>本日实时总流量大小为<strong>&nbsp;747679&nbsp;</strong>Byte</p>
+        <p>本日ipv4流量大小为<strong>&nbsp;423445&nbsp;</strong>Byte</p>
+        <p>本日ipv6流量大小为<strong>&nbsp;324234&nbsp;</strong>Byte</p>
+         <p>系统运行时间:&nbsp;<strong>&nbsp;123&nbsp;</strong>天<strong>&nbsp;18&nbsp;</strong>时<strong>&nbsp;31&nbsp;</strong>分</br>恶意域名数总计:&nbsp;<strong>{{this.malTotal}}</strong></br> 检测日志数总计:&nbsp;<strong>{{this.logTotal}}</strong></p>
       </div>
     </main>
   </div>
@@ -73,12 +76,6 @@ export default {
   box-sizing: border-box;
 }
 
-// .item {
-//   padding: 10px 0;
-//   width: 50%;
-//   height: 100%;
-// }
-
 main {
   position: relative;
   height: calc(100% - 57px);
@@ -94,8 +91,8 @@ main {
     color:#59aef5;
     font-size: 16px;
   }
- 
 }
+
 .item.one {
   width: 100%;
   height: 100%;
@@ -119,7 +116,7 @@ main {
   height: 100%;
   transform: translate(24%, -22.5%) scale(0.5);
   h1{
-    margin-top:4em;
+    margin-top:2em;
     margin-bottom: 0.75em;
     font-size: 48px;
     font-weight: bold;
@@ -128,7 +125,7 @@ main {
     color:red;
   }
   p{
-    line-height: 1.4
+    line-height: 1.6
   }
 }
 

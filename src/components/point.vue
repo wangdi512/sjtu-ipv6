@@ -27,7 +27,7 @@
   <div class="point" ref="point">
     <v-header :name="name" :legendArr="legendArr" :myChart="myChart" :headerColor="this.color"></v-header>
     <p>
-      本次上传文件的流量总大小为
+      本日监控流量总大小为
       <strong>{{this.chartData[0].value+this.chartData[1].value}}</strong>Byte</br>其中IPv4流量总大小为
       <strong>{{this.chartData[0].value}}</strong> Bytes</br>IPv6流量总大小为
       <strong>{{this.chartData[1].value}}</strong>Byte</br。

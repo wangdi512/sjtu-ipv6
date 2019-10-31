@@ -75,7 +75,7 @@ export default {
   width 100%
   h1
     color black
-    font-size 21px
+    font-size 30px
     font-weight bold
     padding-left 20px
   ul

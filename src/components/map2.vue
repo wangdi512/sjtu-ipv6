@@ -63,7 +63,7 @@ export default {
         top: "top",
         textStyle: {
           // color: "#e0e6ef",
-          fontSize:22
+          fontSize:30
         }
       },
       tooltip: {

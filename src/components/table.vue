@@ -19,6 +19,10 @@ p{
    color:#e03e3e;
   }
 }
+button{
+  float:right;
+  transform: translate(-50%,-140%)
+}
 </style>
 <style lang="scss" >
 .el-table__body tr.hover-row>td{
@@ -60,9 +64,16 @@ thead{
   <div class="table">
     <div class="main">
       <p>恶意域名数总计:&nbsp;<strong>{{this.malTotal}}</strong></br> 检测日志数总计:&nbsp;<strong>{{this.logTotal}}</strong></p>
-      <el-table :data="tableData" style="width: 100%" height="200">
-        <el-table-column fixed prop="ip" label="ip"></el-table-column>
+       <el-button type="primary" round @click="xxx">ipv4/ipv6切换</el-button>
+      <el-table :data="tableData" style="width: 100%" height="200" v-if="ipv4">
+        <el-table-column fixed prop="ip" label="ipv4"></el-table-column>
         <el-table-column prop="domain" label="域名"></el-table-column>
+        <el-table-column prop="time" label="时间"></el-table-column>
+      </el-table>
+      <el-table :data="tableDataIpv6" style="width: 100%" height="200" v-else>
+        <el-table-column fixed prop="ip" label="ipv6"></el-table-column>
+        <el-table-column prop="domain" label="域名"></el-table-column>
+        <el-table-column prop="time" label="时间"></el-table-column>
       </el-table>
     </div>
   </div>
@@ -72,7 +83,9 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      tableData:this.$store.state.chartData.result
+      tableData:this.$store.state.chartData.result,
+      tableDataIpv6:this.$store.state.chartData.ipv6,
+      ipv4:true
     };
   },
   computed: {
@@ -80,6 +93,12 @@ export default {
        'malTotal',
        'logTotal'
     ])
+  },
+  methods:{
+    xxx(){
+      console.log(this.ipv4,"ipv4");
+      this.ipv4=!this.ipv4
+    }
   },
   mounted(){
   }
