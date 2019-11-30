@@ -11,6 +11,22 @@ const state = {
 
 const mutations = {
   initData(state, payload) {
+    let unordered2 = payload.chart2;
+    let ordered2={} 
+    Object.keys(unordered2)
+      .sort()
+      .forEach(function(key) {
+        ordered2[key] = unordered2[key];
+      });
+    payload.chart2 = ordered2;
+    let unordered1 = payload.chart1;
+    let ordered1 = {};
+    Object.keys(unordered1)
+      .sort()
+      .forEach(function(key) {
+        ordered1[key] = unordered1[key];
+      });
+    payload.chart1 = ordered1
     state.chartData = payload;
   }
 };
@@ -18,7 +34,7 @@ const getters = {
   chart1Ydata: state => {
     return Object.values(state.chartData.chart1).reduce(
       (acc, v) => {
-        acc[0].push(v[0]);
+        acc[0].push(v[0]/100);
         acc[1].push(v[1]);
         return acc;
       },

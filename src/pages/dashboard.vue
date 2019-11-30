@@ -19,7 +19,7 @@
       <v-line
         title="IPv4/IPv6流量变化折线图"
         :xData="this.chart1Xdata"
-        :yData="this.ydata3"
+        :yData="this.chart1Ydata"
         yName="流量大小/byte"
         xName="时间/s"
         :label="['ipv4','ipv6']"
@@ -40,7 +40,7 @@
         title="IPv6各服务提供商上下行流量大小"
         xName="服务商"
         yName="流量大小/Byte"
-        :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
+        :xData="['教育网','电信', '联通','移动','阿里','腾讯','亚马逊']"
         :label="[ '上行流量','下行流量' ]"
         :yData="this.data5"
       ></column>

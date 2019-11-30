@@ -24,6 +24,7 @@
 <script>
 import echarts from "echarts";
 import header from "@/components/header";
+import Vue from "vue";
 
 export default {
   props: {
@@ -125,11 +126,12 @@ export default {
               name: this.label[0],
               type: "bar",
               stack: "总量",
-              data: [...val[0].slice(0, 4)],
+              data: val[0] ? [...val[0].slice(0, 4)] : [],
               label: {
                 normal: {
                   show: true,
-                  position: "insideTop"
+                  color: "black",
+                  position: "top"
                 }
               }
             },
@@ -137,25 +139,29 @@ export default {
               name: this.label[1],
               type: "bar",
               stack: "总量",
-              data: ["-", "-", "-", "-", ...val[0].slice(4, 8)],
+              data: val[0] ? ["-", "-", "-", "-", ...val[0].slice(4, 8)] : [],
               label: {
                 normal: {
                   show: true,
-                  position: "insideTop"
+                  color: "black",
+                  position: "top"
                 }
               }
             }
           ]
         });
       }
+      this._init()
     }
   },
   methods: {
     _init() {
       this.legendArr = this.myChart.getOption().series;
+      console.log(this.myChart.getOption(), "?????");
       this.legendArr.forEach(data => {
         data.selected = true;
       });
+      [];
       this.$root.charts.push(this.myChart);
       window.addEventListener(
         "resize",
@@ -248,7 +254,7 @@ export default {
           name: this.label[0],
           type: "bar",
           stack: "总量",
-          data: [...this.yData[0].slice(0, 4)],
+          data: this.yData[0] ? [...this.yData[0].slice(0, 4)] : [],
           label: {
             normal: {
               show: true,
@@ -260,7 +266,11 @@ export default {
           name: this.label[1],
           type: "bar",
           stack: "总量",
-          data: ["-", "-", "-", "-", ...this.yData[0].slice(4, 8)],
+          data: this.yData[0]
+            ? [...this.yData[0].slice(0, 4)]
+            : []
+            ? ["-", "-", "-", "-", ...this.yData[0].slice(4, 8)]
+            : [],
           label: {
             normal: {
               show: true,
@@ -270,7 +280,8 @@ export default {
         }
       ]
     });
+    console.log("chushihua");
     this._init();
-  },
+  }
 };
 </script>

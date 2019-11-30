@@ -1,0 +1,10 @@
+创建仓库
+svn co https://202.120.1.44/svn/XXXX XXXX为用户名
+cd XXXX
+提交生成新文件
+svn add newfiles
+svn commit -m "info" 
+提交更新文件
+svn ci -m 要更新的文件
+从库中获取最新：
+svn update

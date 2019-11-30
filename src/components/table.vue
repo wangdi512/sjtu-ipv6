@@ -69,6 +69,7 @@ thead{
         <el-table-column fixed prop="ip" label="ipv4"></el-table-column>
         <el-table-column prop="domain" label="域名"></el-table-column>
         <el-table-column prop="time" label="时间"></el-table-column>
+        <el-table-column prop="srcip" label="源ip"></el-table-column>
       </el-table>
       <el-table :data="tableDataIpv6" style="width: 100%" height="200" v-else>
         <el-table-column fixed prop="ip" label="ipv6"></el-table-column>

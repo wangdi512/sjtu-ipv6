@@ -7,7 +7,7 @@
           title="IPv6各服务提供商上下行流量大小"
           xName="服务商"
           yName="流量大小/Byte"
-          :xData="['教育网','电信', '联通','移动','阿里d','腾讯','亚马逊']"
+          :xData="['教育网','电信', '联通','移动','阿里','腾讯','亚马逊']"
           :label="[ '上行流量','下行流量' ]"
           :yData="this.chart5Ydata"
         ></column>
@@ -30,9 +30,9 @@
       </div>
       <div class="item four">
         <h1>系统运行情况：</h1>
-        <p>本日实时总流量大小为<strong>&nbsp;747679&nbsp;</strong>Byte</p>
-        <p>本日ipv4流量大小为<strong>&nbsp;423445&nbsp;</strong>Byte</p>
-        <p>本日ipv6流量大小为<strong>&nbsp;324234&nbsp;</strong>Byte</p>
+        <p>本日实时总流量大小为<strong>&nbsp;356143850&nbsp;</strong>Bytes</p>
+        <p>本日ipv4流量大小为<strong>&nbsp;35330014&nbsp;</strong>Bytes</p>
+        <p>本日ipv6流量大小为<strong>&nbsp;2842836&nbsp;</strong>Bytes</p>
          <p>系统运行时间:&nbsp;<strong>&nbsp;123&nbsp;</strong>天<strong>&nbsp;18&nbsp;</strong>时<strong>&nbsp;31&nbsp;</strong>分</br>恶意域名数总计:&nbsp;<strong>{{this.malTotal}}</strong></br> 检测日志数总计:&nbsp;<strong>{{this.logTotal}}</strong></p>
       </div>
     </main>

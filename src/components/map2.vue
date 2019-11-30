@@ -97,7 +97,7 @@ export default {
           coordinateSystem: "geo",
           data: this.$store.state.chartData.iot_message.slice(0,36).map(function(itemOpt) {
             return {
-              name:itemOpt.ip+"<br>"+"设备:"+itemOpt.device,
+              name:itemOpt.ip=="2001:da8:8000:6026::200"? itemOpt.ip+"<br>"+"设备:"+itemOpt.device+"<br>"+"default_admin:admin" +"<br>"+"default_passwd:admin"+"<br>"+'devTypePattern :[[body, title], [regex, (?i)axis, (?i)router]]'+"<br>"+  "loginUrlPattern: document\\.write\\(\"([^\"\\]+)[^\\r\\n]+>Setup<\/a>" : itemOpt.ip+"<br>"+"设备:router"+"<br>"+ "devTypePattern: [[body, title], [regex, Basler AG]]"+"<br>"+"nextUrl: [string,  /cgi-bin/auth_if.cgi?Login ]"+"<br>"+ "auth: [form,  Auth.Username=admin&Auth.Password=admin, body, regex, success: true]",
               value: itemOpt.location,
               label: {
                 normal: {

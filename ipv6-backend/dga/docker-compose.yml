@@ -1,0 +1,29 @@
+version: '3'
+services:
+  pcap2log:
+    build: ./logengine
+    image: logengine
+    volumes:
+        - ./logengine/files:/root/logengine/scripts
+        - ./logengine/log:/root/logengine/runlog
+        - ./logengine/pcapfile:/root/logengine/pcapfile
+        - ./log/dga:/root/logengine/log/pdns3new
+    working_dir: /root/logengine/log/pdns3new
+    command: python /root/logengine/scripts/run.py pdns3new 5
+    restart: always
+  spark:
+    build: ./spark
+    image: spark
+    command: python /code/detect.py 
+    volumes:
+      - ./log:/log/
+      - ./deploy:/deploy
+      - ./code:/code
+    restart: always
+  dga:
+    build: .
+    image: dgapython
+    command: python /code/detect2.py
+    volumes:
+      - ./log:/log
+      - ./code:/code
