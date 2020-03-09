@@ -132,7 +132,7 @@ export default {
           ],
           textStyle: {
             fontWeight: "normal",
-            fontSize: 16
+            fontSize: 16,
           },
           series: this.label.map((v, i) => {
             return {
@@ -144,7 +144,8 @@ export default {
               label: {
                 normal: {
                   show: true,
-                  position: "insideTop"
+                  color:"black",
+                  position: "top"
                 }
               }
             };

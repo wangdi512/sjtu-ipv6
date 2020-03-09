@@ -1,0 +1,12 @@
+一般我不记客户端请求，而是记录回答，因为DNS服务器对客户端发的请求都会做一个回答，并且保持question section，回答里还有RCODE等信息，更有用。
+
+pdns_resp就是目前在用的记录query log的程序。不过所谓的query log实际上是根据DNS response抓的。
+
+
+如果要更完整：
+
+可以用pdns_all，请求、回答、权威回答的资源记录，分三个log来记录。
+
+用以下两条命令可以直接部署在ubuntu14.04机器上
+scp -P 10126 spark@202.120.1.152:/home/spark/pdns/bin/pdns* .
+scp -P 10126 spark@202.120.1.152:/usr/lib/libldns.so* /usr/lib/.

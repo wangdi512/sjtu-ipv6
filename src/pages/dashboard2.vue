@@ -10,7 +10,7 @@
     <div class="item three">
       <v-line
         title="一周内检测域名数变化"
-        :xData="this.dateXdata"
+        :xData="this.dateXdata.sort()"
         :yData="this.ydata3"
         yName="数量/百条"
         xName="时间"

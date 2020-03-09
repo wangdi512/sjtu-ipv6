@@ -1,0 +1,9 @@
+processing:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+processing:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+processing:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap
+finished:pdns3new -i /root/logengine/pcapfile/zeus-dga.pcap

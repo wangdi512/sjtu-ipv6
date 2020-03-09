@@ -1,0 +1,32 @@
+version: '3'
+services:
+  maldomain:
+    image: spark
+    volumes:
+      - ./code:/code
+    command: python /code/detect.py
+    restart: always
+  es:
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:6.5.1'
+    container_name: deepoceanes
+    environment:
+      - discovery.type=single-node
+    networks:
+      - default
+      - deepoceannet
+  db:
+    image: mysql:5.7
+    container_name: deepoceandb
+    environment:
+      - MYSQL_ROOT_PASSWORD=""
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      #- /root/traffic/db/deepoceandb2:/var/lib/mysql
+      #- /root/traffic/backup/deepoceandb:/backup
+    networks:
+      - default
+      - deepoceannet
+networks:
+  deepoceannet:
+    external: true
+

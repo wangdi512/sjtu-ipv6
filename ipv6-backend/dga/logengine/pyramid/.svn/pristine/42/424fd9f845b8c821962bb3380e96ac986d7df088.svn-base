@@ -1,0 +1,2 @@
+all:
+	gcc -O3 -o pdns_all main.c -lpcap -lldns

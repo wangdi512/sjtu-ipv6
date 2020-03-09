@@ -120,17 +120,20 @@ export default {
                   name: v,
                   type: "line",
                   stack: "总量",
-                  data: val[i]
+                  data: val[i],
+                  color:this.color[i]
                 };
               })
             : { name: "", type: "line", stack: "总量", data: [] }
         });
       }
+      this._init()
     }
   },
   methods: {
     _init() {
       this.legendArr = this.myChart.getOption().series;
+      console.log("arr!!!",this.myChart.getOption());
       this.legendArr.forEach(data => {
         data.selected = true;
       });
@@ -163,7 +166,7 @@ export default {
       toolbox: {
         show: false
       },
-      color: this.color,
+      // color: this.color,
       calculable: true,
       xAxis: [
         {
@@ -226,7 +229,7 @@ export default {
               name: v,
               type: "line",
               stack: "总量",
-              data: this.yData[i]
+              data: this.yData[i],
             };
           })
         : { name: "", type: "line", stack: "总量", data: [] }

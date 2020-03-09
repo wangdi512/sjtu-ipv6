@@ -1,0 +1,10 @@
+pdns 标志aa=1 and rd=0 and noerror and notrunc 去重每1小时，按10分钟产生日志(不产生dst ip)
+pdns2 标志只需要 noerror and notrunc，去重10分钟，按10分钟产生日志 （不产生dst ip),可部署在非dns server
+pdns_all 10分钟  qry resp rr 注意非dns server不产生rr日志
+pdns_all2 10分钟 注意产生rr日志需要 noerror and notrunc，但没有去重，并产生dst ip
+pdns_resp 1小时
+总体要求：可合并成一个程序跑，利用参数分配
+1 时间需要成为一个参数（注意分析代码的时长是否相关，有时1分钟，有时5分钟，通用10分钟，要视流量大小）
+2 是否rr的标志可成为一个参数，便于部署。
+
+pdns3 10分钟
